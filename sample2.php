@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,20 +29,60 @@
     <div class="bars1" onclick="show()">
             <i class="fa-solid fa-bars"></i>
     </div>
+
     <div class="main">
         <div class="pro1name">
             <h1>Name of the proctor  : Ganesh</h1>
         </div>
     </div>
+    
+    <!-- Display database options -->
+    <div>
+        <form method="post" action="">
+            <label for="jagadeesh">Select an option:</label>
+            <select name="jagadeesh" id="jagadeesh">
+                <?php
+                // Replace 'your_table' with your actual table name
+                $servername = "localhost";
+                $username = "root";
+                $password = "1234";
+                $dbname = "moon";
+                
+                // Create connection
+                $conn = new mysqli($servername, $username, $password, $dbname);
+                
+                // Check connection
+                if ($conn->connect_error) {
+                    die("Connection failed: " . $conn->connect_error);
+                }
+                
+                // Fetch options from the database
+                $sql = "SELECT id, option_name FROM your_table";
+                $result = $conn->query($sql);
+                
+                if ($result->num_rows > 0) {
+                    // Output data of each row
+                    while($row = $result->fetch_assoc()) {
+                        $id = $row["id"];
+                        $optionName = $row["option_name"];
+                        // Check if this option is selected
+                        $selected = ($optionName == 'jagadeesh') ? 'selected' : '';
+    
+                        echo "<option value='$id' $selected>$optionName</option>";
+                    }
+                } else {
+                    echo "0 results";
+                }
+                $conn->close();
+                ?>
+            </select>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
     <div class="sem1table">
         <center>
             <form method="post" action="murn.php">
-                <label for="table_name">Select student name:</label>
-                <select name="table_name">
-                    <option value="jagadeesh">jagadeesh</option>
-                    <option value="godwin">godwin</option>
-                    <option value="sem1_results">godwin</option>
-                </select>
                 <table border="2" class="sem1content">
                     <tr>
                         <th>Subject code<br>Name of subject</th>
@@ -61,87 +100,7 @@
                         <th>-</th>
                         <th>-</th>
                     </tr>
-                    <tr>
-                        <th>JHS1101<br>communicative English<br>and soft skills</th>
-                        <td><input type="number" name="test1"></td>
-                        <td><input type="number" name="att1"></td>
-                        <td><input type="number" name="test2"></td>
-                        <td><input type="number" name="att2"></td>
-                        <td><input type="number" name="internal_marks"></td>
-                        <td><input type="text" name="university_exam_results"></td>
-                    </tr>
-                    <tr>
-                        <th>JHS1101<br>communicative English<br>and soft skills</th>
-                        <td><input></td>
-                        <td><input></td>
-                        <td><input></td>
-                        <td><input></td>
-                        <td><input></td>
-                        <td><input></td>
-                    </tr>
-                    <tr>
-                        <th>JHS1101<br>communicative English<br>and soft skills</th>
-                        <td><input></td>
-                        <td><input></td>
-                        <td><input></td>
-                        <td><input></td>
-                        <td><input></td>
-                        <td><input></td>
-                    </tr>
-                    <tr>
-                        <th>JHS1101<br>communicative English<br>and soft skills</th>
-                        <td><input></td>
-                        <td><input></td>
-                        <td><input></td>
-                        <td><input></td>
-                        <td><input></td>
-                        <td><input></td>
-                    </tr>
-                    <tr>
-                        <th>JHS1101<br>communicative English<br>and soft skills</th>
-                        <td><input></td>
-                        <td><input></td>
-                        <td><input></td>
-                        <td><input></td>
-                        <td><input></td>
-                        <td><input></td>
-                    </tr>
-                    <tr>
-                        <th>JHS1101<br>communicative English<br>and soft skills</th>
-                        <td><input></td>
-                        <td><input></td>
-                        <td><input></td>
-                        <td><input></td>
-                        <td><input></td>
-                        <td><input></td>
-                    </tr>
-                    <tr>
-                        <th>JHS1101<br>communicative English<br>and soft skills</th>
-                        <td><input></td>
-                        <td><input></td>
-                        <td><input></td>
-                        <td><input></td>
-                        <td><input></td>
-                        <td><input></td>
-                    </tr>
-                    <tr>
-                        <th>JHS1101<br>communicative English<br>and soft skills</th>
-                        <td><input></td>
-                        <td><input></td>
-                        <td><input></td>
-                        <td><input></td>
-                        <td><input></td>
-                        <td><input></td>
-                    </tr>
-                    <tr>
-                        <th>JHS1101<br>communicative English<br>and soft skills</th>
-                        <td><input></td>
-                        <td><input></td>
-                        <td><input></td>
-                        <td><input></td>
-                        <td><input></td>
-                        <td><input></td>
-                    </tr>
+                    <!-- PHP code to insert selected data into the table will go here -->
                 </table> 
                 <button type="submit">Submit</button>
             </form>     
@@ -149,6 +108,13 @@
 
     </div>
     <div class="foot">
+        <form>
+            <tr>
+                <th>Subject Code</th>
+                <td><input type="text" name="subject_code"></td>
+                <!-- Add other input fields here -->
+            </tr>
+        </form>
         
             <tr>
                 <td><h2>Number of standing arrears:</h2></td><br>

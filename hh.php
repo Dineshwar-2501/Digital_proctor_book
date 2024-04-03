@@ -39,14 +39,12 @@
             <form>
                 <table border="2" class="sem2content">
                     <tr>
-                        <th>Subject code<br>Name of subject</th>
                         <th colspan="2">Test 1</th>
                         <th colspan="2">Test 2</th>
                         <th>Internal marks</th>
                         <th>University Exam<br>(Results)</th>
                     </tr>
                     <tr>
-                        <th>-</th>
                         <th>Mark<br>(%)</th>
                         <th>Attendance<br>(Hours)</th>
                         <th>Mark<br>(%)</th>
@@ -54,89 +52,42 @@
                         <th>-</th>
                         <th>-</th>
                     </tr>
-                    <tr>
-                        <th>JHS1101<br>communicative English<br>and soft skills</th>
-                        <td><input></td>
-                        <td><input></td>
-                        <td><input></td>
-                        <td><input></td>
-                        <td><input></td>
-                        <td><input></td>
-                    </tr>
-                    <tr>
-                        <th>JHS1101<br>communicative English<br>and soft skills</th>
-                        <td><input></td>
-                        <td><input></td>
-                        <td><input></td>
-                        <td><input></td>
-                        <td><input></td>
-                        <td><input></td>
-                    </tr>
-                    <tr>
-                        <th>JHS1101<br>communicative English<br>and soft skills</th>
-                        <td><input></td>
-                        <td><input></td>
-                        <td><input></td>
-                        <td><input></td>
-                        <td><input></td>
-                        <td><input></td>
-                    </tr>
-                    <tr>
-                        <th>JHS1101<br>communicative English<br>and soft skills</th>
-                        <td><input></td>
-                        <td><input></td>
-                        <td><input></td>
-                        <td><input></td>
-                        <td><input></td>
-                        <td><input></td>
-                    </tr>
-                    <tr>
-                        <th>JHS1101<br>communicative English<br>and soft skills</th>
-                        <td><input></td>
-                        <td><input></td>
-                        <td><input></td>
-                        <td><input></td>
-                        <td><input></td>
-                        <td><input></td>
-                    </tr>
-                    <tr>
-                        <th>JHS1101<br>communicative English<br>and soft skills</th>
-                        <td><input></td>
-                        <td><input></td>
-                        <td><input></td>
-                        <td><input></td>
-                        <td><input></td>
-                        <td><input></td>
-                    </tr>
-                    <tr>
-                        <th>JHS1101<br>communicative English<br>and soft skills</th>
-                        <td><input></td>
-                        <td><input></td>
-                        <td><input></td>
-                        <td><input></td>
-                        <td><input></td>
-                        <td><input></td>
-                    </tr>
-                    <tr>
-                        <th>JHS1101<br>communicative English<br>and soft skills</th>
-                        <td><input></td>
-                        <td><input></td>
-                        <td><input></td>
-                        <td><input></td>
-                        <td><input></td>
-                        <td><input></td>
-                    </tr>
-                    <tr>
-                        <th>JHS1101<br>communicative English<br>and soft skills</th>
-                        <td><input></td>
-                        <td><input></td>
-                        <td><input></td>
-                        <td><input></td>
-                        <td><input></td>
-                        <td><input></td>
-                    </tr>
-                </table> 
-            </form>     
+                    <?php
+                    // Step 1: Establish Connection
+                    $servername = "localhost";
+                    $username = "root";
+                    $password = "1234";
+                    $dbname = "moon";
+                    $conn = new mysqli($servername, $username, $password, $dbname);
+
+                    // Check connection
+                    if ($conn->connect_error) {
+                        die("Connection failed: " . $conn->connect_error);
+                    }
+
+                    // Step 2: Fetch Data from the Database
+                    $sql = "SELECT test1_mark, test1_attend, test2_mark, test2_attend, internal_marks, university_exam_results FROM sem1_results";
+                    $result = $conn->query($sql);
+
+                    // Step 3: Output Data in HTML Table
+                    if ($result->num_rows > 0) {
+                        while($row = $result->fetch_assoc()) {
+                            echo "<tr>";
+                            echo "<td><input value='" . $row["test1_mark"] . "'></td>";
+                            echo "<td><input value='" . $row["test1_attendance"] . "'></td>";
+                            echo "<td><input value='" . $row["test2_mark"] . "'></td>";
+                            echo "<td><input value='" . $row["test2_attendance"] . "'></td>";
+                            echo "<td><input value='" . $row["internal_marks"] . "'></td>";
+                            echo "<td><input value='" . $row["university_exam_results"] . "'></td>";
+                            echo "</tr>";
+                        }
+                    } else {
+                        echo "0 results";
+                    }
+                    $conn->close();
+                    ?>
+                </table>
+            </form>
         </center>
     </div>
     <div class="foot2">
@@ -185,7 +136,7 @@
         <h3><i class="fa-solid fa-phone" style="margin-right: 15px;"></i> 75400 37999
         <i class="fa-solid fa-envelope"style="margin-right: 15px;"></i> admission@jerusalemengg.ac.in</h3>
         <center>
-            All rights reseved
+            All rights reserved
         </center>
     </footer>
     <script src="main.js"></script>

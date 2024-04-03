@@ -6,10 +6,3 @@ function show(){
 function closee(){
     sidenav.style.left="-60%"
 }
-
-
-$('.message a').click(function(){
-    $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
- });
-
-  
