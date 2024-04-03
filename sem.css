@@ -92,6 +92,10 @@ outline: none;
 .sem1track:hover{
     outline: none;
 }
+/*input{
+    border-width:thick;
+    background-color: aqua;
+}*/
 .semfooter{
     margin-top: 40px;
     width: 100%;
